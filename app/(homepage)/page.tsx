@@ -1,29 +1,33 @@
+import React, { Suspense } from "react";
 import LoadingCards from "@/components/card/LoadingCards";
-import CategoriesList from "@/components/home/CategoriesList";
 import PropertiesContainer from "@/components/home/PropertiesContainer";
 import { AccordionComponent } from "@/components/landing/Accordion ";
 import { CarouselHome } from "@/components/landing/Carousel";
-import { Suspense } from "react";
 import { Pricing } from "@/components/home/Pricing";
 import FacebookMsg from "@/components/FacebookMsg";
+import ContactButton from "@/components/ContactButton";
+
+
+
 function HomePage({
   searchParams,
 }: {
   searchParams: { category?: string; search?: string };
 }) {
   return (
-    <section>
+    <section className="relative">
       <CarouselHome />
       <Suspense fallback={<LoadingCards />}>
-        <PropertiesContainer
-          category={searchParams.category}
-          search={searchParams.search}
-        />
+        <PropertiesContainer category={searchParams.category} search={searchParams.search} />
       </Suspense>
       <AccordionComponent />
       <Pricing />
       <FacebookMsg />
+      
+      {/* Thêm nút Contact Us vào cuối trang */}
+      <ContactButton/>
     </section>
   );
 }
+
 export default HomePage;

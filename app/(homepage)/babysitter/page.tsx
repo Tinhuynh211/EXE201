@@ -1,9 +1,10 @@
+import FacebookMsg from '@/components/FacebookMsg';
 import Image from 'next/image';
 
 const teamMembers = [
   {
     name: 'Phan Quốc Thái Bảo',
-    role: 'Babysister',
+    role: 'Tutor',
     image: '/path/to/maitran.jpg', // Update paths with actual image URLs
     social: {
       facebook: '#',
@@ -14,7 +15,7 @@ const teamMembers = [
   },
   {
     name: 'Huyền Hà',
-    role: 'Babysister',
+    role: 'Tutor',
     image: '/path/to/huyenha.jpg',
     social: {
       facebook: '#',
@@ -23,7 +24,7 @@ const teamMembers = [
   },
   {
     name: 'Tuyết Nhung',
-    role: 'Babysister',
+    role: 'Tutor',
     image: '/path/to/tuyetnhung.jpg',
     social: {
       facebook: '#',
@@ -32,7 +33,7 @@ const teamMembers = [
   },
   {
     name: 'Hoàng Lệ',
-    role: 'Babysister',
+    role: 'Tutor',
     image: '/path/to/hoangle.jpg',
     social: {
       facebook: '#',
@@ -41,7 +42,7 @@ const teamMembers = [
   },
   {
     name: 'Uyên Sa',
-    role: 'Babysister',
+    role: 'Tutor',
     image: '/path/to/uyensa.jpg',
     social: {
       facebook: '#',
@@ -49,9 +50,9 @@ const teamMembers = [
     },
   },
   {
-    name: 'Tùng Phan',
-    role: 'Babysister',
-    image: '/path/to/huyenthuong.jpg',
+    name: 'Tín Huỳnh',
+    role: 'Tutor',
+    image: '/images/tinhuynh.jpg',
     social: {
       facebook: '#',
       email: '#',
@@ -59,8 +60,8 @@ const teamMembers = [
   },
   {
     name: 'Nguyễn Anh',
-    role: 'Babysister',
-    image: '/path/to/jay.jpg',
+    role: 'Tutor',
+    image: '/images',
     social: {
       facebook: '#',
       email: '#',
@@ -71,7 +72,7 @@ const teamMembers = [
 const Team = () => {
   return (
     <div className="py-10 text-center">
-      <h2 className="text-2xl font-semibold mb-8">Đội Ngũ Giảng Viên</h2>
+      <h2 className="text-2xl font-semibold mb-8">Đội Ngũ Trông Trẻ</h2>
       <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
         {teamMembers.map((member, index) => (
           <div
@@ -130,7 +131,9 @@ const Team = () => {
           </div>
         ))}
       </div>
+      <FacebookMsg/>
     </div>
+    
   );
 };
 

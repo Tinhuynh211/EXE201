@@ -63,9 +63,9 @@ export function Footer() {
                 <div>
                   <a href="index.html">
                     <Image
-                      src="/images/logo.png"
+                      src="/images/Logo.png"
                       className="img-fluid"
-                      style={{ height: "100px", width: "auto" }} // Increased logo size
+                      style={{ height: "100px", width: "auto" }} 
                       alt="logo"
                       width={100}
                       height={100}

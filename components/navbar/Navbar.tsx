@@ -68,7 +68,7 @@ function Navbar() {
                         href="/"
                       >
                         <Image
-                          src="/images/logo.png"
+                          src="/images/Logo.png"
                           className="img-fluid"
                           style={{ height: "50px" }}
                           alt="logo"

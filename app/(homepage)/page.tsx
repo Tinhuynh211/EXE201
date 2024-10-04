@@ -4,7 +4,6 @@ import PropertiesContainer from "@/components/home/PropertiesContainer";
 import { AccordionComponent } from "@/components/landing/Accordion ";
 import { CarouselHome } from "@/components/landing/Carousel";
 import { Pricing } from "@/components/home/Pricing";
-import FacebookMsg from "@/components/FacebookMsg";
 import ContactButton from "@/components/ContactButton";
 
 
@@ -22,7 +21,7 @@ function HomePage({
       </Suspense>
       <AccordionComponent />
       <Pricing />
-      <FacebookMsg />
+      
       
       {/* Thêm nút Contact Us vào cuối trang */}
       <ContactButton/>

@@ -1,11 +1,14 @@
-import FacebookMsg from '@/components/FacebookMsg';
+import React from 'react';
 import Image from 'next/image';
 
+
+// Dữ liệu thành viên nhóm
 const teamMembers = [
   {
     name: 'Phan Quốc Thái Bảo',
     role: 'Tutor',
-    image: '/path/to/maitran.jpg', // Update paths with actual image URLs
+    image: '/images/maitran.jpg', // Cập nhật đường dẫn hình ảnh
+    id : '1',
     social: {
       facebook: '#',
       email: '#',
@@ -16,7 +19,8 @@ const teamMembers = [
   {
     name: 'Huyền Hà',
     role: 'Tutor',
-    image: '/path/to/huyenha.jpg',
+    image: '/images/huyenha.jpg',
+    id : '2',
     social: {
       facebook: '#',
       email: '#',
@@ -25,7 +29,8 @@ const teamMembers = [
   {
     name: 'Tuyết Nhung',
     role: 'Tutor',
-    image: '/path/to/tuyetnhung.jpg',
+    id : '3',
+    image: '/images/tuyetnhung.jpg',
     social: {
       facebook: '#',
       email: '#',
@@ -34,7 +39,8 @@ const teamMembers = [
   {
     name: 'Hoàng Lệ',
     role: 'Tutor',
-    image: '/path/to/hoangle.jpg',
+    image: '/images/hoangle.jpg',
+    id : '4',
     social: {
       facebook: '#',
       email: '#',
@@ -43,7 +49,8 @@ const teamMembers = [
   {
     name: 'Uyên Sa',
     role: 'Tutor',
-    image: '/path/to/uyensa.jpg',
+    image: '/images/uyensa.jpg',
+    id : '5',
     social: {
       facebook: '#',
       email: '#',
@@ -53,6 +60,7 @@ const teamMembers = [
     name: 'Tín Huỳnh',
     role: 'Tutor',
     image: '/images/tinhuynh.jpg',
+    id : '6',
     social: {
       facebook: '#',
       email: '#',
@@ -61,7 +69,8 @@ const teamMembers = [
   {
     name: 'Nguyễn Anh',
     role: 'Tutor',
-    image: '/images',
+    image: '/images/nguyenanh.jpg',
+    id : '7',
     social: {
       facebook: '#',
       email: '#',
@@ -69,71 +78,45 @@ const teamMembers = [
   },
 ];
 
-const Team = () => {
+const Team: React.FC = () => {
   return (
-    <div className="py-10 text-center">
+    <div className="py-10 px-4 text-center">
       <h2 className="text-2xl font-semibold mb-8">Đội Ngũ Trông Trẻ</h2>
       <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
         {teamMembers.map((member, index) => (
           <div
             key={index}
-            className="bg-white shadow-lg rounded-lg p-6 flex flex-col items-center transform transition duration-300 hover:scale-105"
+            className="bg-white shadow-md rounded-lg p-4 flex flex-col items-center justify-between border border-gray-200"
           >
-            <div className="w-32 h-32 mb-4 overflow-hidden rounded-full">
+            {/* Ảnh đại diện của thành viên */}
+            <div className="relative w-32 h-32 mb-4 overflow-hidden rounded-full border border-gray-300">
               <Image
                 src={member.image}
-                alt={member.name}
-                width={128}
-                height={128}
-                className="object-cover"
+                alt={`${member.name}'s avatar`}
+                layout="fill"
+                objectFit="cover"
+                className="rounded-full"
               />
             </div>
-            <h3 className="text-lg font-medium">{member.name}</h3>
-            <p className="text-sm text-gray-500">{member.role}</p>
-            <div className="flex space-x-4 mt-4">
-              {member.social.facebook && (
-                <a
-                  href={member.social.facebook}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-gray-400 hover:text-blue-500"
-                >
-                  <i className="fab fa-facebook"></i>
-                </a>
-              )}
-              {member.social.email && (
-                <a
-                  href={`mailto:${member.social.email}`}
-                  className="text-gray-400 hover:text-blue-500"
-                >
-                  <i className="fas fa-envelope"></i>
-                </a>
-              )}
-              {member.social.phone && (
-                <a
-                  href={`tel:${member.social.phone}`}
-                  className="text-gray-400 hover:text-blue-500"
-                >
-                  <i className="fas fa-phone"></i>
-                </a>
-              )}
-              {member.social.youtube && (
-                <a
-                  href={member.social.youtube}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-gray-400 hover:text-red-500"
-                >
-                  <i className="fab fa-youtube"></i>
-                </a>
-              )}
+
+            {/* Tên và vai trò của thành viên */}
+            <div className="flex flex-col items-center">
+              <h3 className="text-lg font-medium">{member.name}</h3>
+              <p className="text-sm text-gray-500">{member.role}</p>
             </div>
+
+            {/* Nút Thông tin chi tiết */}
+            <a
+              href={`/team/${member.id}`}
+              className="mt-4 text-gray-500 py-2 px-4 rounded-full hover:bg-gray-200 transition duration-300"
+            >
+              Thông tin chi tiết
+            </a>
           </div>
         ))}
       </div>
-      <FacebookMsg/>
+      
     </div>
-    
   );
 };
 

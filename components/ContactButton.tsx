@@ -4,7 +4,7 @@ import React from "react";
 const ContactButton: React.FC = () => {
   return (
     <a
-      href="https://m.me/406386295898124" // Thay đổi thành URL m.me của bạn
+      href="https://www.facebook.com/messages/t/406386295898124" // Thay đổi thành URL m.me của bạn
       target="_blank"
       rel="noopener noreferrer"
       className="fixed bottom-10 right-6 bg-blue-600 text-white p-4 rounded-full shadow-lg hover:bg-blue-700 transition duration-300 ease-in-out flex items-center"

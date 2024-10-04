@@ -72,13 +72,13 @@ export default function DatePickerWithRange({
   const handleBooking = async (babysitterId: number) => {
     const url = "https://payos-oqu5.onrender.com/create-payment-link";
     const payload = {
-      orderCode: Random(),
-      amount: 2000,
+      orderCode: Random(), // Mã đơn hàng ngẫu nhiên
+      amount: 2000, // Số tiền cần thanh toán
       description: "Thanh toan don hang",
-      returnUrl: "Nguyen",
-      cancelUrl: "HIHi",
+      returnUrl: "https://exe-201-71jh.vercel.app/success", // Liên kết chuyển hướng sau khi thanh toán thành công
+      cancelUrl: "https://exe-201-71jh.vercel.app/failed", // Liên kết chuyển hướng khi hủy thanh toán
     };
-
+  
     try {
       const response = await fetch(url, {
         method: "POST",
@@ -87,19 +87,25 @@ export default function DatePickerWithRange({
         },
         body: JSON.stringify(payload),
       });
-
+  
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
-
+  
       const data = await response.json();
-      console.log("Payment link created:", data);
-      // Handle the response as needed
+  
+      // Nếu API trả về link thanh toán, chuyển hướng người dùng đến đó
+      if (data.paymentUrl) {
+        window.location.href = data.paymentUrl;
+      } else {
+        console.error("No payment URL returned from API:", data);
+      }
     } catch (error) {
       console.error("Error creating payment link:", error);
-      // Handle the error as needed
+      alert("Không thể tạo liên kết thanh toán. Vui lòng thử lại sau.");
     }
   };
+  
 
   return (
     <div className={cn("grid gap-4", className)}>

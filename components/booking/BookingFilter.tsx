@@ -107,18 +107,18 @@ export default function DatePickerWithRange({
 
   // Hàm gửi thông tin đến API khi nhấn Confirm
   const handleConfirmBooking = async () => {
-    const url = "https://payostest.onrender.com/create-payment-link";
+    const url = "http://localhost:3030/create-payment-link";
     const payload = {
       orderCode: Random(),
-      amount: userInfo.totalAmount, // Tổng tiền
-      description: `Đặt chỗ ${userInfo.hours} giờ với bảo mẫu`,
+      amount: userInfo.totalAmount,
+      description: `Đặt ${userInfo.hours} giờ với bảo mẫu`,
       returnUrl: "https://exe-201-71jh.vercel.app/success",
       cancelUrl: "https://exe-201-71jh.vercel.app/failed",
-      customerName: userInfo.name, // Tên khách hàng
-      customerPhone: userInfo.phone, // Số điện thoại
-      customerAddress: userInfo.address, // Địa chỉ khách hàng
+      customerName: userInfo.name,
+      customerPhone: userInfo.phone,
+      customerAddress: userInfo.address,
     };
-
+  
     try {
       const response = await fetch(url, {
         method: "POST",
@@ -127,24 +127,28 @@ export default function DatePickerWithRange({
         },
         body: JSON.stringify(payload),
       });
-
+    
+      // Kiểm tra nếu response có lỗi
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
-
-      const data = await response.json();
-
-      // Chuyển hướng đến URL thanh toán
-      if (data.checkoutUrl) {
-        window.location.href = data.checkoutUrl;
+    
+      const data = await response.json(); // Parse JSON từ phản hồi
+      console.log("Response Data: ", data); // Log dữ liệu đã parse
+    
+      if (data && data.checkoutUrl) {
+        window.location.href = data.checkoutUrl; // Chuyển hướng đến URL thanh toán
       } else {
-        console.error("No payment URL returned from API:", data);
+        console.error("No payment URL returned in response:", data);
+        alert("Không có URL thanh toán được trả về. Vui lòng thử lại.");
       }
     } catch (error) {
       console.error("Error creating payment link:", error);
       alert("Không thể tạo liên kết thanh toán. Vui lòng thử lại sau.");
     }
+    
   };
+  
 
   return (
     <div className={cn("grid gap-4", className)}>

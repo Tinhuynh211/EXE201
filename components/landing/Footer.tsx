@@ -1,9 +1,30 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import Image from "next/image";
 import "@fortawesome/fontawesome-free/css/all.min.css"; // Import FontAwesome CSS
 
 export function Footer() {
+  // State để lưu giá trị email
+  const [email, setEmail] = useState("");
+
+  // Hàm để kiểm tra tính hợp lệ của email
+  const validateEmail = (email: string): boolean => {
+    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return regex.test(email);
+  };
+  
+
+  // Hàm xử lý khi nhấn nút đăng ký
+  const handleSubscribeClick = () => {
+    if (!email) {
+      alert("Vui lòng nhập địa chỉ email!");
+    } else if (!validateEmail(email)) {
+      alert("Email không hợp lệ. Vui lòng kiểm tra lại!");
+    } else {
+      alert("Cảm ơn bạn đã đăng ký, Chúng tôi sẽ sớm gửi thông tin cho bạn khi có cập nhật sớm nhất");
+    }
+  };
+
   return (
     <>
       <div className="container mx-auto px-4">
@@ -93,8 +114,8 @@ export function Footer() {
                 </div>
                 <div style={{ marginBottom: "25px", color: "#00ADEE" }}>
                   <p>
-                  Đừng bỏ lỡ việc đăng ký các nguồn cấp dữ liệu mới của chúng tôi, vui lòng điền vào
-                  hình thức dưới đây.
+                    Đừng bỏ lỡ việc đăng ký các nguồn cấp dữ liệu mới của chúng tôi, vui lòng điền vào
+                    hình thức dưới đây.
                   </p>
                 </div>
                 <div>
@@ -102,6 +123,8 @@ export function Footer() {
                     <input
                       type="text"
                       placeholder="Email Address"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)} // Cập nhật giá trị email vào state
                       style={{
                         padding: "10px",
                         marginRight: "10px",
@@ -113,6 +136,8 @@ export function Footer() {
                       }}
                     />
                     <button
+                      type="button" // Thay đổi từ "submit" sang "button" để sử dụng onClick
+                      onClick={handleSubscribeClick} // Gọi hàm khi nhấn nút
                       style={{
                         padding: "10px",
                         background: "#007bff",

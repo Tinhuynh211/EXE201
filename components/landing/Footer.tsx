@@ -93,8 +93,8 @@ export function Footer() {
                 </div>
                 <div style={{ marginBottom: "25px", color: "#00ADEE" }}>
                   <p>
-                    Don’t miss to subscribe to our new feeds, kindly fill the
-                    form below.
+                  Đừng bỏ lỡ việc đăng ký các nguồn cấp dữ liệu mới của chúng tôi, vui lòng điền vào
+                  hình thức dưới đây.
                   </p>
                 </div>
                 <div>

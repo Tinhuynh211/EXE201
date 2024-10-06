@@ -58,7 +58,7 @@ function Navbar() {
         <NavigationMenu>
           <NavigationMenuList>
             <NavigationMenuItem>
-              <NavigationMenuTrigger>Getting started</NavigationMenuTrigger>
+              <NavigationMenuTrigger>Bắt đầu</NavigationMenuTrigger>
               <NavigationMenuContent>
                 <ul className="grid gap-3 p-4 mt-3 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
                   <li className="row-span-3">
@@ -79,57 +79,42 @@ function Navbar() {
                           TYF Company
                         </div>
                         <p className="text-sm leading-tight text-muted-foreground">
-                          Company specializing in providing babysitting services
-                          and baby supplies.
+                        Công ty chuyên cung cấp dịch vụ trông trẻ và phát triển tư duy cho trẻ.
                         </p>
                       </a>
                     </NavigationMenuLink>
                   </li>
                   <ListItem href="/about-us" title="About Us">
-                    Re-usable components built using Radix UI and Tailwind CSS.
+                    Tất cả thông tin về chúng tôi
                   </ListItem>
                   <ListItem href="/docs/installation" title="Policy">
-                    How to install dependencies and structure your app.
+                    Điều khoản dịch vụ 
                   </ListItem>
                   <ListItem
                     href="/docs/primitives/typography"
-                    title="Partnership"
+                    title="Support"
                   >
-                    Styles for headings, paragraphs, lists...etc
+                    Hỗ trợ khách hàng
                   </ListItem>
                 </ul>
               </NavigationMenuContent>
             </NavigationMenuItem>
-            <NavigationMenuItem>
-              <NavigationMenuTrigger>Components</NavigationMenuTrigger>
-              <NavigationMenuContent>
-                <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] ">
-                  {components.map((component) => (
-                    <ListItem
-                      key={component.title}
-                      title={component.title}
-                      href={component.href}
-                    >
-                      {component.description}
-                    </ListItem>
-                  ))}
-                </ul>
-              </NavigationMenuContent>
-            </NavigationMenuItem>
+            
             <NavigationMenuItem>
               <Link href="/careers" legacyBehavior passHref>
                 <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                  Careers
+                  Đăng Kí
                 </NavigationMenuLink>
               </Link>
             </NavigationMenuItem>
             <NavigationMenuItem>
-              <Link href="/babysitter" legacyBehavior passHref>
+              <Link href="/booking-example" legacyBehavior passHref>
                 <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                  Teams
+                  Đặt Lịch
                 </NavigationMenuLink>
               </Link>
             </NavigationMenuItem>
+            
           </NavigationMenuList>
         </NavigationMenu>
         <NavSearch />

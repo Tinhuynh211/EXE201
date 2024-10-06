@@ -107,7 +107,7 @@ export default function DatePickerWithRange({
 
   // Hàm gửi thông tin đến API khi nhấn Confirm
   const handleConfirmBooking = async () => {
-    const url = "https://payos-deploy.onrender.com/create-payment-link";
+    const url = "http://localhost:3030/create-payment-link";
     const payload = {
       orderCode: Random(),
       amount: userInfo.totalAmount,

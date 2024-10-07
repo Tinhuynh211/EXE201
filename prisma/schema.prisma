@@ -9,22 +9,35 @@ generator client {
 }
 
 model Profile {
-  id           String     @id @default(uuid())
-  clerkId      String     @unique
-  firstName    String
-  lastName     String
-  username     String
-  email        String
-  profileImage String
-  createdAt    DateTime   @default(now())
-  updatedAt    DateTime   @updatedAt
-  properties   Property[]
-  favorites    Favorite[]
-  reviews      Review[]
-  bookings     Booking[]
-  CV           CV?
-  busyDays     BusyDay[]
-  isBabySitter Boolean    @default(false)
+  id              String          @id @default(uuid())
+  clerkId         String          @unique
+  firstName       String
+  lastName        String
+  username        String
+  email           String
+  profileImage    String
+  createdAt       DateTime        @default(now())
+  updatedAt       DateTime        @updatedAt
+  reviews         Review[]
+  bookings        Booking[]       @relation("ProfileToBookings")
+  babySitting     Booking[]       @relation("ProfileToBabySitting")
+  CV              CV?
+  busyDays        BusyDay[]
+  isBabySitter    Boolean         @default(false)
+
+  detailProfile   DetailProfile?  @relation(fields: [detailProfileId], references: [id], name: "ProfileToDetailProfile")
+  detailProfileId String?         @unique // Đánh dấu trường này là duy nhất
+}
+
+model DetailProfile {
+  id          String  @id @default(uuid())
+  citizenId   String
+  homeTown    String
+  gender      String
+  dateofBirth String
+  residence   String
+  nationality String
+  profile     Profile? @relation(name: "ProfileToDetailProfile")
 }
 
 model BusyDay {
@@ -32,26 +45,6 @@ model BusyDay {
   dateBusy  DateTime
   profile   Profile  @relation(fields: [profileId], references: [id])
   profileId String
-}
-
-model Property {
-  id          String     @id @default(uuid())
-  name        String
-  tagline     String
-  category    String
-  image       String
-  country     String
-  description String
-  price       Int
-  guests      Int
-  amenities   String
-  createdAt   DateTime   @default(now())
-  updatedAt   DateTime   @updatedAt
-  profile     Profile    @relation(fields: [profileId], references: [clerkId], onDelete: Cascade)
-  profileId   String
-  favorites   Favorite[]
-  reviews     Review[]
-  bookings    Booking[]
 }
 
 model CV {
@@ -66,24 +59,10 @@ model CV {
   profileId   String   @unique
 }
 
-model Favorite {
-  id        String   @id @default(uuid())
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
-  profile   Profile @relation(fields: [profileId], references: [clerkId], onDelete: Cascade)
-  profileId String
-
-  property   Property @relation(fields: [propertyId], references: [id], onDelete: Cascade)
-  propertyId String
-}
-
 model Review {
   id         String   @id @default(uuid())
   profile    Profile  @relation(fields: [profileId], references: [clerkId], onDelete: Cascade)
   profileId  String
-  property   Property @relation(fields: [propertyId], references: [id], onDelete: Cascade)
-  propertyId String
   rating     Int
   comment    String
   createdAt  DateTime @default(now())
@@ -91,16 +70,23 @@ model Review {
 }
 
 model Booking {
-  id            String   @id @default(uuid())
-  profile       Profile  @relation(fields: [profileId], references: [clerkId], onDelete: Cascade)
-  profileId     String
-  property      Property @relation(fields: [propertyId], references: [id], onDelete: Cascade)
-  propertyId    String
-  orderTotal    Int
-  totalNights   Int
-  checkIn       DateTime
-  checkOut      DateTime
-  paymentStatus Boolean  @default(false)
-  createdAt     DateTime @default(now())
-  updatedAt     DateTime @updatedAt
+  id             String   @id @default(uuid())
+  profile        Profile  @relation("ProfileToBookings", fields: [profileId], references: [clerkId], onDelete: Cascade)
+  profileId      String
+  paymentStatus  Boolean  @default(false)
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+  location       String
+  babySitter     Profile? @relation("ProfileToBabySitting", fields: [babySitterId], references: [id]) 
+  babySitterId   String?
+  amount         String
+  startDateTime  DateTime? // Thời gian bắt đầu
+  endDateTime    DateTime? // Thời gian kết thúc
+  type           BookingType // Phân loại loại hình booking: "Hourly", "Daily", "Monthly"
+}
+
+enum BookingType {
+  HOURLY
+  DAILY
+  MONTHLY
 }

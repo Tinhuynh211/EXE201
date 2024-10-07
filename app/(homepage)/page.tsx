@@ -1,6 +1,5 @@
 import React, { Suspense } from "react";
 import LoadingCards from "@/components/card/LoadingCards";
-import PropertiesContainer from "@/components/home/PropertiesContainer";
 import { AccordionComponent } from "@/components/landing/Accordion ";
 import { CarouselHome } from "@/components/landing/Carousel";
 import { Pricing } from "@/components/home/Pricing";
@@ -17,7 +16,7 @@ function HomePage({
     <section className="relative">
       <CarouselHome />
       <Suspense fallback={<LoadingCards />}>
-        <PropertiesContainer category={searchParams.category} search={searchParams.search} />
+       
       </Suspense>
       <AccordionComponent />
       <Pricing />

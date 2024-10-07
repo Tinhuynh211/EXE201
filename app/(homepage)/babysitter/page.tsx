@@ -5,77 +5,16 @@ import Image from 'next/image';
 // Dữ liệu thành viên nhóm
 const teamMembers = [
   {
-    name: 'Phan Quốc Thái Bảo',
-    role: 'Tutor',
-    image: '/images/maitran.jpg', // Cập nhật đường dẫn hình ảnh
-    id : '1',
-    social: {
-      facebook: '#',
-      email: '#',
-      phone: '#',
-      youtube: '#',
-    },
-  },
-  {
-    name: 'Huyền Hà',
-    role: 'Tutor',
-    image: '/images/huyenha.jpg',
-    id : '2',
-    social: {
-      facebook: '#',
-      email: '#',
-    },
-  },
-  {
-    name: 'Tuyết Nhung',
-    role: 'Tutor',
-    id : '3',
-    image: '/images/tuyetnhung.jpg',
-    social: {
-      facebook: '#',
-      email: '#',
-    },
-  },
-  {
-    name: 'Hoàng Lệ',
-    role: 'Tutor',
-    image: '/images/hoangle.jpg',
-    id : '4',
-    social: {
-      facebook: '#',
-      email: '#',
-    },
-  },
-  {
-    name: 'Uyên Sa',
-    role: 'Tutor',
-    image: '/images/uyensa.jpg',
-    id : '5',
-    social: {
-      facebook: '#',
-      email: '#',
-    },
-  },
-  {
     name: 'Tín Huỳnh',
     role: 'Tutor',
     image: '/images/tinhuynh.jpg',
-    id : '6',
+    id: '6',
     social: {
       facebook: '#',
       email: '#',
     },
   },
-  {
-    name: 'Nguyễn Anh',
-    role: 'Tutor',
-    image: '/images/nguyenanh.jpg',
-    id : '7',
-    social: {
-      facebook: '#',
-      email: '#',
-    },
-  },
+  
 ];
 
 const Team: React.FC = () => {
@@ -107,15 +46,16 @@ const Team: React.FC = () => {
 
             {/* Nút Thông tin chi tiết */}
             <a
-              href={`/team/${member.id}`}
+             href='/favorites'
               className="mt-4 text-gray-500 py-2 px-4 rounded-full hover:bg-gray-200 transition duration-300"
             >
               Thông tin chi tiết
             </a>
+
           </div>
         ))}
       </div>
-      
+
     </div>
   );
 };

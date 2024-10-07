@@ -84,15 +84,15 @@ function Navbar() {
                       </a>
                     </NavigationMenuLink>
                   </li>
-                  <ListItem href="/about-us" title="About Us">
+                  <ListItem href="/about-us" title="Về Chúng Tôi">
                     Tất cả thông tin về chúng tôi
                   </ListItem>
-                  <ListItem href="/docs/installation" title="Policy">
+                  <ListItem href="/reservations" title="Điều Khoản">
                     Điều khoản dịch vụ 
                   </ListItem>
                   <ListItem
-                    href="/docs/primitives/typography"
-                    title="Support"
+                    href="/rentals"
+                    title="Hỗ Trợ"
                   >
                     Hỗ trợ khách hàng
                   </ListItem>
@@ -101,9 +101,9 @@ function Navbar() {
             </NavigationMenuItem>
             
             <NavigationMenuItem>
-              <Link href="/careers" legacyBehavior passHref>
+              <Link href="/babysitter" legacyBehavior passHref>
                 <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                  Đăng Kí
+                  Đội Ngũ
                 </NavigationMenuLink>
               </Link>
             </NavigationMenuItem>

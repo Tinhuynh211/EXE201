@@ -1,6 +1,6 @@
 import FormInput from "@/components/form/FormInput";
 import FormContainer from "@/components/form/FormContainer";
-import { createCareerAction, createPropertyAction } from "@/utils/actions";
+import { createCareerAction } from "@/utils/actions";
 import { SubmitButton } from "@/components/form/Buttons";
 import TextAreaInput from "@/components/form/TextAreaInput";
 

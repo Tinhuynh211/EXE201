@@ -1,5 +1,6 @@
 import React from 'react';
 import Image from 'next/image';
+import { FaFacebook, FaEnvelope } from 'react-icons/fa';
 
 const TutorProfile: React.FC = () => {
   const tutor = {
@@ -61,7 +62,15 @@ const TutorProfile: React.FC = () => {
         <div className="text-center mt-16">
           <h1 className="text-4xl font-bold">{tutor.name}</h1>
           <p className="text-xl text-gray-500">{tutor.role}</p>
-          
+          {/* Thêm icon Facebook và Gmail */}
+          <div className="flex justify-center space-x-4 mt-2">
+            <a href="https://www.facebook.com/dead.brain211/" target="_blank" rel="noopener noreferrer" className="text-blue-600">
+              <FaFacebook size={24} />
+            </a>
+            <a href="mailto:tinhuynh211@gmail.com" className="text-red-600">
+              <FaEnvelope size={24} />
+            </a>
+          </div>
         </div>
       </div>
 

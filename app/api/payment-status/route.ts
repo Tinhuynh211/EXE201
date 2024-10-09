@@ -10,7 +10,7 @@ export async function GET(req: NextRequest) {
   if (status === "PAID" && customerEmail) {
     // Gửi email sau khi thanh toán thành công
     try {
-      const emailResponse = await fetch("http://localhost:3000/api/send-email", {
+      const emailResponse = await fetch("https://exe-201-71jh.vercel.app/api/send-email", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

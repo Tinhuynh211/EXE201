@@ -46,29 +46,80 @@ function HomePage({
   React.useEffect(() => {
     if (searchParams.status === "PAID") {
       console.log("Gửi email vì trạng thái là PAID");
-  
+    
       // Gửi email khi phát hiện trạng thái `PAID`
       sendEmail(
         "tinhuynh211@gmail.com", // Thay bằng email của bạn hoặc người dùng
         "Xác nhận thanh toán thành công",
-        `<h2>Thanh toán thành công!</h2>
-         <p>Cảm ơn bạn đã hoàn tất đơn hàng.</p>
-         <p>Trạng thái thanh toán: ${searchParams.status}</p>`
+        `
+        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: auto; border: 1px solid #ddd; padding: 20px; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.1);">
+          <div style="text-align: center; background-color: #f8f8f8; padding: 10px; border-bottom: 1px solid #ddd;">
+            <h1 style="color: #333;">Thanh Toán Thành Công!</h1>
+          </div>
+          
+          <div style="padding: 20px;">
+            <h2 style="color: #4CAF50;">Xin chào,</h2>
+            <p style="font-size: 16px; color: #333;">Cảm ơn bạn đã hoàn tất đơn hàng của mình.</p>
+            <p style="font-size: 16px; color: #333;">Thông tin thanh toán của bạn đã được xác nhận.</p>
+            
+            <div style="border: 1px solid #ddd; border-radius: 8px; padding: 15px; background-color: #f9f9f9; margin: 20px 0;">
+              <h3 style="color: #4CAF50;">Chi tiết thanh toán:</h3>
+              <table style="width: 100%; border-collapse: collapse;">
+                <tr>
+                  <td style="padding: 10px; border-bottom: 1px solid #ddd;">Trạng thái thanh toán:</td>
+                  <td style="padding: 10px; border-bottom: 1px solid #ddd; color: #333;"><strong>${searchParams.status}</strong></td>
+                </tr>
+              </table>
+            </div>
+            
+            <p style="font-size: 16px; color: #333;">Nếu bạn có bất kỳ thắc mắc nào, vui lòng liên hệ với chúng tôi qua email hoặc số điện thoại dưới đây.</p>
+          </div>
+          
+          <div style="text-align: center; background-color: #f8f8f8; padding: 10px; border-top: 1px solid #ddd;">
+            <p style="font-size: 14px; color: #888;">&copy; 2024 Công ty TYF. Tất cả quyền được bảo lưu.</p>
+            <p style="font-size: 14px; color: #888;">Liên hệ: 0945199743 | Email: tyfcompany@gmail.com</p>
+          </div>
+        </div>
+        `
       );
     }
+    
   
     if (searchParams.status === "CANCELLED") {
       console.log("Gửi email vì trạng thái là CANCELLED");
-  
+    
       // Gửi email khi phát hiện trạng thái `CANCELLED`
       sendEmail(
         "tinhuynh211@gmail.com", // Thay bằng email của bạn hoặc người dùng
         "Thông báo hủy đơn hàng",
-        `<h2>Đơn hàng đã bị hủy!</h2>
-         <p>Đơn hàng của bạn đã bị hủy thành công.</p>
-         <p>Trạng thái đơn hàng: ${searchParams.status}</p>`
+        `
+        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 20px auto; padding: 20px; border: 1px solid #ddd; border-radius: 10px; background-color: #fff3f3;">
+          <h2 style="color: #ff4d4f; text-align: center;">Đơn Hàng Đã Bị Hủy!</h2>
+          <p style="font-size: 16px; color: #333;">Đơn hàng của bạn đã được hủy thành công.</p>
+          <p style="font-size: 16px; color: #333;">Nếu bạn không yêu cầu hủy đơn hàng, vui lòng liên hệ với chúng tôi để biết thêm thông tin chi tiết.</p>
+    
+          <div style="border: 1px solid #ddd; border-radius: 8px; padding: 15px; background-color: #fff; margin: 20px 0;">
+            <h3 style="color: #ff4d4f; margin-top: 0;">Thông tin đơn hàng:</h3>
+            <table style="width: 100%; border-collapse: collapse;">
+              <tr>
+                <td style="padding: 10px; border-bottom: 1px solid #ddd;">Trạng thái đơn hàng:</td>
+                <td style="padding: 10px; border-bottom: 1px solid #ddd; color: #ff4d4f;"><strong>${searchParams.status}</strong></td>
+              </tr>
+            </table>
+          </div>
+    
+          <p style="font-size: 14px; color: #555;">Nếu bạn có bất kỳ thắc mắc nào, vui lòng liên hệ với chúng tôi qua email hoặc số điện thoại dưới đây.</p>
+    
+          <div style="text-align: center; font-size: 14px; color: #888; margin-top: 20px;">
+            &copy; 2024 Công ty TYF . Tất cả quyền được bảo lưu.
+            <br />
+            Liên hệ: 0945199743 | Email: tyfcompany@gmail.com
+          </div>
+        </div>
+        `
       );
     }
+    
   }, [searchParams.status]); // Chỉ chạy khi `searchParams.status` thay đổi
   
 
@@ -89,11 +140,7 @@ function HomePage({
         </h3>
       )}
 
-      {searchParams.status && (
-        <h3 className={`text-xl text-center mb-6 ${getStatusColor(searchParams.status)}`}>
-          Trạng thái: {searchParams.status}
-        </h3>
-      )}
+     
 
       <AccordionComponent />
       <Pricing />
@@ -105,19 +152,6 @@ function HomePage({
 }
 
 // Hàm trả về màu sắc dựa vào trạng thái
-function getStatusColor(status: string): string {
-  switch (status) {
-    case "PAID":
-      console.log("PAID");
-      return "text-green-500"; // Màu xanh lá khi đã thanh toán
-    case "CANCELLED":
-      console.log("Cancel");
-      return "text-red-500"; // Màu đỏ khi hủy
-    case "PENDING":
-      return "text-yellow-500"; // Màu vàng khi đang chờ xử lý
-    default:
-      return "text-gray-500"; // Màu xám cho các trạng thái khác
-  }
-}
+
 
 export default HomePage;

@@ -14,5 +14,5 @@ export const links: NavLink[] = [
   { href: "/admin", label: "admin" },
   { href: "/babysitter", label: "babysitter" },
   { href: "/profile ", label: "profile" },
-  { href: "/payment-status", label: "payment-status" },
+  
 ];
